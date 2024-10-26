@@ -2,7 +2,6 @@ import os
 import psycopg2
 import platform
 
-
 from psycopg2 import sql
 from configparser import ConfigParser
 from sqlalchemy.orm import sessionmaker
@@ -77,7 +76,7 @@ def set_scriptdb(cur):
     con.set_isolation_level(ISOLATION_LEVEL_AUTOCOMMIT)
     curschema = con.cursor()
 
-    curschema.execute(sql.SQL("CREATE SCHEMA app"))
+    curschema.execute(sql.SQL("CREATE SCHEMA IF NOT EXISTS app"))
     
 def get_cursor():
     config = get_dbconfig()
