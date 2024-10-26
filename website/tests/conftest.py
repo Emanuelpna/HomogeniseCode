@@ -10,6 +10,7 @@ def app():
 
 @pytest.fixture(scope="function", autouse=True)
 def loginUser(client):
+    client.post('/sign-up', data={'email': 'teste@email.com', 'firstName': 'Teste', 'password1': '1234567', 'password2': '1234567'})
     client.post('/login', data={'email': 'teste@email.com', 'password': '1234567'})
 
 @pytest.fixture

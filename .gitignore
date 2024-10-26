@@ -83,5 +83,6 @@ celerybeat-schedule
 venv/
 ENV/
 
+homogenise_db/
 
 .idea
