@@ -36,7 +36,7 @@ def test_log_in_usuario_existente_senha_correta(client, captured_templates):
 
 def test_log_in_usuario_existente_senha_incorreta(client, captured_templates):
     """
-        [TC008 - ?] Tentar realizar o Login com usuário existente, senha incorreta
+        [TC008 - ?] não realizar o Login com usuário existente, senha incorreta
 
     """
 

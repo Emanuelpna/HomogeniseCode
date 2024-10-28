@@ -36,7 +36,7 @@ def test_modificar_usuario_com_senhas_diferentes(client, captured_templates):
 
 def test_modificar_usuario_com_senhas_com_poucos_caracteres(client, captured_templates):
     """
-        [TC00? - ?] Não modificar usuário com senha com poucos caracteres
+        [TC0013 - ?] Não modificar usuário com senha com poucos caracteres
 
 
     """
