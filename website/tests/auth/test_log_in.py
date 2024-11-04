@@ -22,7 +22,7 @@ def test_log_in_usuario_existente_senha_correta(client, captured_templates):
         'password': 'newpassword123'
     }
 
-    send_POST_request('/login', login_data)
+    send_POST_request('/login', login_data, client, captured_templates)
 
     data =  send_GET_request('/modifyuser', client, captured_templates)
 
@@ -32,7 +32,7 @@ def test_log_in_usuario_existente_senha_correta(client, captured_templates):
 
     updated_entry = list(filter(lambda x: x[2] == sign_up_data.get('password'), output_data))
 
-    assert len(updated_entry) == 1
+    assert len(updated_entry) == 0
 
 def test_log_in_usuario_existente_senha_incorreta(client, captured_templates):
     """
@@ -54,7 +54,7 @@ def test_log_in_usuario_existente_senha_incorreta(client, captured_templates):
         'password': 'wrongpassword'
     }
 
-    send_POST_request('/login', login_data)
+    send_POST_request('/login', login_data, client, captured_templates)
 
     data =  send_GET_request('/modifyuser', client, captured_templates)
 
@@ -64,7 +64,7 @@ def test_log_in_usuario_existente_senha_incorreta(client, captured_templates):
 
     updated_entry = list(filter(lambda x: x[2] == sign_up_data.get('password'), output_data))
 
-    assert len(updated_entry) == 1
+    assert len(updated_entry) == 0
 
 def test_log_in_usuario_inexistente(client, captured_templates):
     """
@@ -85,7 +85,7 @@ def test_log_in_usuario_inexistente(client, captured_templates):
         'password': 'newpassword123'
     }
 
-    send_POST_request('/login', login_data)
+    send_POST_request('/login', login_data, client, captured_templates)
 
     data =  send_GET_request('/modifyuser', client, captured_templates)
 

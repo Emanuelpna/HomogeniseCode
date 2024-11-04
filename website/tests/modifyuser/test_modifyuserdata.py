@@ -1,3 +1,5 @@
+from uuid import uuid4
+
 from utils import send_GET_request, send_POST_request
 
 def test_modificar_usuario_com_senhas_diferentes(client, captured_templates):
@@ -15,11 +17,13 @@ def test_modificar_usuario_com_senhas_diferentes(client, captured_templates):
 
     send_POST_request('/sign-up', sign_up_data, client, captured_templates)
 
-    modify_data = {'user_id': '1',
+    modify_data = {
+        'user_id': '1',
         'user_type_id': '1',
         'first_name':'User',
         'password1':'newpassword123',
-        'password2':'newpassword',}
+        'password2':'newpassword',
+    }
 
     send_POST_request('/modifyuserdata', modify_data, client, captured_templates)
 
@@ -31,14 +35,12 @@ def test_modificar_usuario_com_senhas_diferentes(client, captured_templates):
 
     updated_entry = list(filter(lambda x: x[2] == sign_up_data.get('email'), output_data))
 
-    assert len(updated_entry) == 0
+    assert updated_entry[0][1] == sign_up_data.get('firstName')
 
 
 def test_modificar_usuario_com_senhas_com_poucos_caracteres(client, captured_templates):
     """
         [TC0013 - ?] Não modificar usuário com senha com poucos caracteres
-
-
     """
 
     sign_up_data = {
@@ -50,11 +52,13 @@ def test_modificar_usuario_com_senhas_com_poucos_caracteres(client, captured_tem
 
     send_POST_request('/sign-up', sign_up_data, client, captured_templates)
 
-    modify_data = {'user_id': '1',
+    modify_data = {
+        'user_id': '1',
         'user_type_id': '1',
         'first_name':'User',
         'password1':'1',
-        'password2':'1',}
+        'password2':'1',
+    }
 
     send_POST_request('/modifyuserdata', modify_data, client, captured_templates)
 
@@ -66,4 +70,4 @@ def test_modificar_usuario_com_senhas_com_poucos_caracteres(client, captured_tem
 
     updated_entry = list(filter(lambda x: x[2] == sign_up_data.get('email'), output_data))
 
-    assert len(updated_entry) == 0
+    assert updated_entry[0][1] == sign_up_data.get('firstName')
