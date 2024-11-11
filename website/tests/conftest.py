@@ -15,14 +15,19 @@ def loginUser(client):
 
 @pytest.fixture
 def captured_templates(app):
+    # Lista de valores capturados do template
     recorded = []
 
+    # Função que é chamada ao renderizar um template
     def record(sender, template, context, **extra):
+        # Salva no array `record` as informações que foram usadas no template
         recorded.append((template, context))
 
+    # Conecta nossa função no renderizador de templates do Flask
     template_rendered.connect(record, app)
 
     try:
+        # Envia para os testes cada um dos resultados recebidos acima
         yield recorded
     finally:
         template_rendered.disconnect(record, app)
