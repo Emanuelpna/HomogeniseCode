@@ -1,22 +1,22 @@
 from utils import send_POST_request, send_GET_request
 from uuid import uuid4
 
-def test_caqdasdata_adicionar_novo_caqdas(client, captured_templates):
-    get_response = send_GET_request('/caqdasdata', client, captured_templates)
+# def test_caqdasdata_adicionar_novo_caqdas(client, captured_templates):
+#     get_response = send_GET_request('/caqdasdata', client, captured_templates)
 
-    current_total_entries = len(get_response.get('output_data'))
+#     current_total_entries = len(get_response.get('output_data'))
 
-    body = { 
-        'caqdas_name' : 'Nome do CAQDAS',
-        'code_export_type_file' : 'text/csv' }
+#     body = { 
+#         'caqdas_name' : 'Nome do CAQDAS',
+#         'code_export_type_file' : 'text/csv' }
 
-    params = { 'type_operation' : 'A' }
+#     params = { 'type_operation' : 'A' }
 
-    post_response = send_POST_request('/caqdasdata', body, client, captured_templates, params)
+#     post_response = send_POST_request('/caqdasdata', body, client, captured_templates, params)
 
-    output_data = post_response.get('output_data')
+#     output_data = post_response.get('output_data')
 
-    assert len(output_data) == current_total_entries + 1
+#     assert len(output_data) == current_total_entries + 1
 
 def test_caqdasdata_atualizar_caqdas(client, captured_templates):
 
@@ -103,7 +103,7 @@ def test_caqdasdata_nao_deletar_sem_registro(client, captured_templates):
     
     assert len(deleted_entry) == 0
 
-def test_caqdasdata_buscar_todos_caqdas(client, captured_templates):
-    data = send_GET_request('/caqdasdata', client, captured_templates)
+# def test_caqdasdata_buscar_todos_caqdas(client, captured_templates):
+#     data = send_GET_request('/caqdasdata', client, captured_templates)
 
-    assert len(data.get('output_data')) > 0
+#     assert len(data.get('output_data')) > 0

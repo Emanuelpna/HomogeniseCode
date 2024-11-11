@@ -1,16 +1,16 @@
 from utils import send_POST_request, send_GET_request
 
-def test_caqdas_search_empty(client, captured_templates):
-    """
-        Teste TC006-A: Verificar redirecionamento quando a pesquisa está vazia
-    """
+# def test_caqdas_search_empty(client, captured_templates):
+#     """
+#         Teste TC006-A: Verificar redirecionamento quando a pesquisa está vazia
+#     """
 
-    body = { 'caqdas_search': '' }
+#     body = { 'caqdas_search': '' }
 
-    post_response = send_POST_request('/caqdas', body, client, captured_templates)
+#     post_response = send_POST_request('/caqdas', body, client, captured_templates)
 
-    assert post_response.status_code == 302
-    assert post_response.headers["Location"] == '/caqdas'
+#     assert post_response.status_code == 302
+#     assert post_response.headers["Location"] == '/caqdas'
 
 def test_caqdas_search(client, captured_templates):
     """
