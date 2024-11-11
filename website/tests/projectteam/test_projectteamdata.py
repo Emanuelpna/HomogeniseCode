@@ -1,5 +1,8 @@
 from utils import send_POST_request
 from uuid import uuid4
+
+from website.tests.utils import send_GET_request
+
 '''
 def test_projectteamdata_inserir_dados_ausentes(client, captured_templates):
     """
@@ -59,8 +62,13 @@ def test_projectteamdata_inserir_membro(client, captured_templates):
         [TC014-C] Inserir um membro em um time de projeto
     """
 
+    response = send_GET_request('/modifyuser', client, captured_templates)
+    users = response.get('output_data')
+    assert len(users) > 0
+    test_user = users[0]
+
     project_id = "1"
-    user_id = "2"
+    user_id = test_user[0]
     st_user_leader = "0"
 
     post_response = send_POST_request('/projectteamdata', {
@@ -78,8 +86,7 @@ def test_projectteamdata_inserir_membro(client, captured_templates):
     assert len(new_entry) == 1
     assert new_entry[0][0] == new_entry_id
     assert new_entry[0][1] == 'Projeto teste'
-    assert new_entry[0][2] == 'NewUser'
-    assert new_entry[0][3] == ''
+    assert new_entry[0][2] == test_user[1]
 
 def test_projectteamdata_impedir_duplicidade_membros(client, captured_templates):
     """
